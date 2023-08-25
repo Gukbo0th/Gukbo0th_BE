@@ -50,6 +50,33 @@ public class FundingsService {
         }
     }
 
-//    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
-//    }
+    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) throws Exception{
+        Fundings fundings = fundingsRepository.findById(creditRequestDto.getFundings_id())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 펀딩 고유 번호"));
+
+        Members members = membersRepository.findByEmail(creditRequestDto.getEmail());
+
+        if(creditRequestDto.getQuantity() > fundings.getRemain()) {
+            throw new Exception("최대" + fundings.getRemain() + "개 구매 가능");
+        }
+
+        fundings.updateRemain(creditRequestDto.getQuantity());
+        Purchases purchases = Purchases.builder()
+                .person(creditRequestDto.getPerson())
+                .amount(fundings.getProdAmount() * creditRequestDto.getQuantity())
+                .quantity(creditRequestDto.getQuantity())
+                .members(members)
+                .fundings(fundings)
+                .build();
+
+        List<Persons> persons = personsRepository.findByFundings(fundings);
+        List<PersonsInfo> personsInfoList = new ArrayList<>();
+        for(Persons p : persons) {
+            personsInfoList.add(PersonsInfo.builder()
+                    .name(p.getName())
+                    .achieve(p.getAchieve())
+                    .build());
+        }
+        return new FundingsDetailResponseDto(fundings,personsInfoList);
+    }
 }

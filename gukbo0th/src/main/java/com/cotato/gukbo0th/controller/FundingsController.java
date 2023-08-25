@@ -4,10 +4,13 @@ import com.cotato.gukbo0th.ResponseDto;
 import com.cotato.gukbo0th.dto.CreditRequestDto;
 import com.cotato.gukbo0th.dto.FundingsDetailResponseDto;
 import com.cotato.gukbo0th.dto.FundingsListResponseDto;
+import com.cotato.gukbo0th.service.FundingsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,9 +20,9 @@ public class FundingsController {
     private final FundingsService fundingsService;
 
     @GetMapping("/list")
-    public ResponseEntity getList(@RequestParam("email") String email) {
+    public ResponseEntity getList() {
         try {
-            FundingsListResponseDto responseDto = fundingsService.getList(email);
+            List<FundingsListResponseDto> responseDto = fundingsService.getList();
             return ResponseEntity.ok().body(ResponseDto.res(HttpStatus.OK.value(), "펀딩 리스트 조회 성공", responseDto));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(ResponseDto.res(HttpStatus.BAD_REQUEST.value(), e.getMessage()));

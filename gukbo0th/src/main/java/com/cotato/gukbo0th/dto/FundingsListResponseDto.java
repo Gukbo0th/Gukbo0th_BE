@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class FundingListResponseDto {
+public class FundingsListResponseDto {
     private Long fundingsId; // 펀딩 고유 번호
     private String mainImg; // 대표 이미지 URL
     private String title; // 펀딩 제목
@@ -14,7 +14,7 @@ public class FundingListResponseDto {
     private State state; // 펀딩 상태
 
     @Builder
-    FundingListResponseDto(Fundings fundings) {
+    public FundingsListResponseDto(Fundings fundings) {
         this.fundingsId = fundings.getId();
         this.mainImg = fundings.getMainImg();
         this.title = fundings.getTitle();

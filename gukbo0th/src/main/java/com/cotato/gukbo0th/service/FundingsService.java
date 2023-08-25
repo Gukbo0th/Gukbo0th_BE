@@ -29,9 +29,9 @@ public class FundingsService {
         return responseFundings;
     }
 
-    public FundingsDetailResponseDto getDetail(Long id) {
-    }
-
-    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
-    }
+//    public FundingsDetailResponseDto getDetail(Long id) {
+//    }
+//
+//    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
+//    }
 }

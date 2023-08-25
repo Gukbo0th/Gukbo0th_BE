@@ -1,11 +1,14 @@
 package com.cotato.gukbo0th.domain;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Members")
+@NoArgsConstructor
 public class Members {
 
     @Id
@@ -23,7 +26,7 @@ public class Members {
     private String password;
 
     @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
-    private Purchases purchases; // 양방향 매핑
+    private List<Purchases> purchases; // 양방향 매핑
 
     @Builder
     public Members(String email, String name, String password) {

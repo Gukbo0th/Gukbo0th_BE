@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -32,13 +31,6 @@ public class FundingsService {
         return responseFundings;
     }
 
-<<<<<<< Updated upstream
-//    public FundingsDetailResponseDto getDetail(Long id) {
-//    }
-//
-//    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
-//    }
-=======
     public FundingsDetailResponseDto getDetail(Long id) throws Exception {
         try {
             Fundings fundings = fundingsRepository.findById(id)
@@ -58,7 +50,6 @@ public class FundingsService {
         }
     }
 
-    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
-    }
->>>>>>> Stashed changes
+//    public FundingsDetailResponseDto credit(CreditRequestDto creditRequestDto) {
+//    }
 }

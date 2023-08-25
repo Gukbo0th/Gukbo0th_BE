@@ -1,11 +1,13 @@
 package com.cotato.gukbo0th.domain;
 
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "Fundings")
 public class Fundings {
@@ -43,15 +45,18 @@ public class Fundings {
     @Column(name = "prod_img_url")
     private String prodImg; // 상세 이미지 URL
 
-    @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
+    @Column(name = "funds_amount", nullable = false)
+    private Long fundsAmount;
+
+    @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
     private Purchases purchases; // 양방향 매핑
 
-    @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
     private Persons persons; // 양방향 매핑
     
     @Builder
     public Fundings(String title, Long goalAmount, Long prodAmount, String details, State state, Long remain,
-                    String mainImg, String prodImg) {
+                    String mainImg, String prodImg, Long fundsAmount) {
         this.title = title;
         this.goalAmount = goalAmount;
         this.prodAmount = prodAmount;
@@ -60,6 +65,7 @@ public class Fundings {
         this.remain = remain;
         this.mainImg = mainImg;
         this.prodImg = prodImg;
+        this.fundsAmount = fundsAmount;
     }
 
 }

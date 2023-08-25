@@ -69,4 +69,8 @@ public class Fundings {
         this.fundsAmount = fundsAmount;
     }
 
+    public void updateRemain(Long quantity) {
+        this.remain -= quantity;
+    }
+
 }

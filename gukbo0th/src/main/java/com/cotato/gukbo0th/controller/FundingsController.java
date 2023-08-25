@@ -39,13 +39,13 @@ public class FundingsController {
         }
     }
 
-//    @PostMapping("/credit")
-//    public ResponseEntity getFunds(@RequestBody CreditRequestDto creditRequestDto) {
-//        try {
-//            FundingsDetailResponseDto responseDto = fundingsService.credit(creditRequestDto);
-//            return ResponseEntity.ok().body(ResponseDto.res(HttpStatus.OK.value(), "펀딩 성공", responseDto));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(ResponseDto.res(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
-//        }
-//    }
+    @PostMapping("/credit")
+    public ResponseEntity getFunds(@RequestBody CreditRequestDto creditRequestDto) {
+        try {
+            FundingsDetailResponseDto responseDto = fundingsService.credit(creditRequestDto);
+            return ResponseEntity.ok().body(ResponseDto.res(HttpStatus.OK.value(), "펀딩 성공", responseDto));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ResponseDto.res(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+        }
+    }
 }

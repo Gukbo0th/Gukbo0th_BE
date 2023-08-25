@@ -1,6 +1,8 @@
 package com.cotato.gukbo0th.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "Members")
-@NoArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Members {
 
     @Id

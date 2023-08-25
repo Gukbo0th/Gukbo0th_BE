@@ -48,10 +48,10 @@ public class Fundings {
     @Column(name = "funds_amount", nullable = false)
     private Long fundsAmount;
 
-    @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
     private Purchases purchases; // 양방향 매핑
 
-    @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
     private Persons persons; // 양방향 매핑
     
     @Builder

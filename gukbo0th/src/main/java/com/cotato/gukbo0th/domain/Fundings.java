@@ -50,5 +50,4 @@ public class Fundings {
     
     // 빌더 패턴 작성해주세요
 
-    // 빌더 작성해야됩니다...
 }

@@ -1,10 +1,13 @@
 package com.cotato.gukbo0th.domain;
 
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "Fundings")
 public class Fundings {
@@ -48,6 +51,17 @@ public class Fundings {
     @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
     private Persons persons; // 양방향 매핑
     
-    // 빌더 패턴 작성해주세요
+    @Builder
+    public Fundings(String title, Long goalAmount, Long prodAmount, String details, State state, Long remain,
+                    String mainImg, String prodImg) {
+        this.title = title;
+        this.goalAmount = goalAmount;
+        this.prodAmount = prodAmount;
+        this.details = details;
+        this.state = state;
+        this.remain = remain;
+        this.mainImg = mainImg;
+        this.prodImg = prodImg;
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.cotato.gukbo0th.domain;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,5 +23,10 @@ public class Persons {
     @JoinColumn(name = "fundings_id")
     private Fundings fundings; // 연관관계 주인
 
-    // 빌더 패턴 작성해주세요
+    @Builder
+    public Persons(String name, String achieve, Fundings fundings) {
+        this.name = name;
+        this.achieve = achieve;
+        this.fundings = fundings;
+    }
 }

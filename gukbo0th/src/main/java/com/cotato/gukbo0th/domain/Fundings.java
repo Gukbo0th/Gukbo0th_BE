@@ -1,11 +1,13 @@
 package com.cotato.gukbo0th.domain;
 
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "Fundings")
 public class Fundings {

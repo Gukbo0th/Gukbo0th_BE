@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Entity
@@ -49,10 +50,10 @@ public class Fundings {
     private Long fundsAmount;
 
     @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
-    private Purchases purchases; // 양방향 매핑
+    private List<Purchases> purchases; // 양방향 매핑
 
     @OneToMany(mappedBy = "fundings", fetch = FetchType.LAZY)
-    private Persons persons; // 양방향 매핑
+    private List<Persons> persons; // 양방향 매핑
     
     @Builder
     public Fundings(String title, Long goalAmount, Long prodAmount, String details, State state, Long remain,

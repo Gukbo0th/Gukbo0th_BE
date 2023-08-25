@@ -16,19 +16,18 @@ public class MemberService {
         //중복 체크
         if (membersRepository.existsByEmail(memberJoinRequest.getEmail())) {
             return null;
-        }else {
-            Members members = new Members(memberJoinRequest.getName(), memberJoinRequest.getEmail(), memberJoinRequest.getPassword());
+        } else {
+            Members members = new Members(memberJoinRequest.getEmail(),memberJoinRequest.getName(), memberJoinRequest.getPassword());
             return membersRepository.save(members);
         }
     }
-//
-//    public Members login(MemberLoginRequest memberLoginRequest) {
-//        if (!membersRepository.existsByEmail(memberLoginRequest.getEmail())) {
-//            return null;
-//        } else {
-//            Long memberId = membersRepository.findByEmail(memberLoginRequest.getEmail()).getId();
-//            if (membersRepository.findById(memberId).getPassword() != memberLoginRequest.getPassword()) {
-//                return null;
-//            }
-//    }
+
+    public boolean login(MemberLoginRequest memberLoginRequest) {
+        if (!membersRepository.existsByEmail(memberLoginRequest.getEmail())) {
+            return false;
+        } else {
+            Members members = membersRepository.findByEmail(memberLoginRequest.getEmail());
+            return members.getPassword().equals(memberLoginRequest.getPassword());
+        }
+    }
 }

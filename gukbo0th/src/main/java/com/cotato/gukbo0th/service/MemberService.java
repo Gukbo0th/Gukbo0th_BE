@@ -11,9 +11,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService {
     private final MembersRepository membersRepository;
-    private final Members members;
 
-    public MemberResponse join(MemberJoinRequest memberJoinRequest) {
+    public Members join(MemberJoinRequest memberJoinRequest) {
         //중복 체크
         if (membersRepository.existsByEmail(memberJoinRequest.getEmail())) {
             return null;
@@ -22,14 +21,14 @@ public class MemberService {
             return membersRepository.save(members);
         }
     }
-
-    public Members login(MemberLoginRequest memberLoginRequest) {
-        if (!membersRepository.existsByEmail(memberLoginRequest.getEmail())) {
-            return null;
-        } else {
-            Long memberId = membersRepository.findByEmail(memberLoginRequest.getEmail()).getId();
-            if (membersRepository.findById(memberId).getPassword() != memberLoginRequest.getPassword()) {
-                return null;
-            }
-    }
+//
+//    public Members login(MemberLoginRequest memberLoginRequest) {
+//        if (!membersRepository.existsByEmail(memberLoginRequest.getEmail())) {
+//            return null;
+//        } else {
+//            Long memberId = membersRepository.findByEmail(memberLoginRequest.getEmail()).getId();
+//            if (membersRepository.findById(memberId).getPassword() != memberLoginRequest.getPassword()) {
+//                return null;
+//            }
+//    }
 }

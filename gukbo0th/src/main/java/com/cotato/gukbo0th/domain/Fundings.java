@@ -45,6 +45,9 @@ public class Fundings {
     @Column(name = "prod_img_url")
     private String prodImg; // 상세 이미지 URL
 
+    @Column(name = "funds_amount", nullable = false)
+    private Long fundsAmount;
+
     @OneToMany(mappedBy = "members", fetch = FetchType.LAZY)
     private Purchases purchases; // 양방향 매핑
 
@@ -53,7 +56,7 @@ public class Fundings {
     
     @Builder
     public Fundings(String title, Long goalAmount, Long prodAmount, String details, State state, Long remain,
-                    String mainImg, String prodImg) {
+                    String mainImg, String prodImg, Long fundsAmount) {
         this.title = title;
         this.goalAmount = goalAmount;
         this.prodAmount = prodAmount;
@@ -62,6 +65,7 @@ public class Fundings {
         this.remain = remain;
         this.mainImg = mainImg;
         this.prodImg = prodImg;
+        this.fundsAmount = fundsAmount;
     }
 
 }

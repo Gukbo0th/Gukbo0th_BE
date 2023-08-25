@@ -19,10 +19,10 @@ public class FundingsDetailResponseDto {
     private String details; // 상세 설명
     private Long funds; // 누적 펀딩 금액
     private Long goal_amount; // 목표 금액
-    private List<PersonsInfo> personsInfoListList = new ArrayList<>();
+    private List<PersonsInfo> personsInfoList = new ArrayList<>();
 
     @Builder
-    public FundingsDetailResponseDto(Fundings fundings, List<PersonsInfo> personsInfoListList) {
+    public FundingsDetailResponseDto(Fundings fundings, List<PersonsInfo> personsInfoList) {
         this.fundings_id = fundings.getId();
         this.main_img_url = fundings.getMainImg();
         this.title = fundings.getTitle();
@@ -32,6 +32,6 @@ public class FundingsDetailResponseDto {
         this.details = fundings.getDetails();
         this.funds = fundings.getFundsAmount();
         this.goal_amount = fundings.getGoalAmount();
-        this.personsInfoListList = personsInfoListList;
+        this.personsInfoList = personsInfoList;
     }
 }

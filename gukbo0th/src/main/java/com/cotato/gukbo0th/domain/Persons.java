@@ -1,9 +1,11 @@
 package com.cotato.gukbo0th.domain;
 
 import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Table(name = "Persons")
 public class Persons {

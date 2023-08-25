@@ -1,0 +1,17 @@
+# mysql
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gukbo0thdb.ctfdbk5pqtcv.ap-northeast-2.rds.amazonaws.com:3306/gukbo0thDB
+    username: admin
+    password: test1234
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true

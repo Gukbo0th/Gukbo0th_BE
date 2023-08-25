@@ -1,0 +1,300 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.15)
+
+2023-08-26 06:37:48.832  INFO 89629 --- [           main] com.cotato.gukbo0th.Gukbo0thApplication  : Starting Gukbo0thApplication using Java 11.0.20.1 on suhseungjuui-MacBookPro.local with PID 89629 (/Users/zzoo0123/Documents/project/gukbo0th/Gukbo0th_BE/gukbo0th/build/libs/gukbo0th-0.0.1-SNAPSHOT.jar started by zzoo0123 in /Users/zzoo0123/Documents/project/gukbo0th/Gukbo0th_BE/gukbo0th/build/libs)
+2023-08-26 06:37:48.833  INFO 89629 --- [           main] com.cotato.gukbo0th.Gukbo0thApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-08-26 06:37:49.267  INFO 89629 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-26 06:37:49.303  INFO 89629 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 4 JPA repository interfaces.
+2023-08-26 06:37:49.724  INFO 89629 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-08-26 06:37:49.733  INFO 89629 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-26 06:37:49.733  INFO 89629 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-08-26 06:37:49.788  INFO 89629 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-26 06:37:49.788  INFO 89629 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 923 ms
+2023-08-26 06:37:49.897  INFO 89629 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-26 06:37:49.931  INFO 89629 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-26 06:37:50.041  INFO 89629 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-26 06:37:50.106  INFO 89629 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-26 06:37:53.183  INFO 89629 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-26 06:37:53.206  INFO 89629 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-08-26 06:37:53.488  INFO 89629 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Persons (class must be instantiated by Interceptor)
+2023-08-26 06:37:53.628  INFO 89629 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Purchases (class must be instantiated by Interceptor)
+2023-08-26 06:37:53.637  INFO 89629 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Fundings (class must be instantiated by Interceptor)
+Hibernate: 
+    
+    alter table persons 
+       drop 
+       foreign key FKbxel1fl3axpptgkaf65lpxupw
+Hibernate: 
+    
+    alter table purchases 
+       drop 
+       foreign key FKqsxg72ftyqncda4pco4i49gsq
+Hibernate: 
+    
+    alter table purchases 
+       drop 
+       foreign key FKm2xjfbxbaxo2b2l6j9pj8nupr
+Hibernate: 
+    
+    drop table if exists fundings
+Hibernate: 
+    
+    drop table if exists members
+Hibernate: 
+    
+    drop table if exists persons
+Hibernate: 
+    
+    drop table if exists purchases
+Hibernate: 
+    
+    create table fundings (
+       fundings_id bigint not null auto_increment,
+        created_at datetime(6) not null,
+        details varchar(255) not null,
+        funds_amount bigint not null,
+        goal_amount bigint not null,
+        main_img_url varchar(255),
+        prod_amount bigint not null,
+        prod_img_url varchar(255),
+        remain bigint not null,
+        state integer not null,
+        title varchar(255) not null,
+        primary key (fundings_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table members (
+       members_id bigint not null auto_increment,
+        email varchar(255) not null,
+        name varchar(255) not null,
+        password varchar(255) not null,
+        primary key (members_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table persons (
+       persons_id bigint not null auto_increment,
+        achieve varchar(255) not null,
+        name varchar(255) not null,
+        fundings_id bigint,
+        primary key (persons_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table purchases (
+       purchases_id bigint not null auto_increment,
+        amount bigint not null,
+        person varchar(255) not null,
+        purchases_at datetime(6) not null,
+        quantity bigint not null,
+        fundings_id bigint,
+        members_id bigint,
+        primary key (purchases_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table persons 
+       add constraint FKbxel1fl3axpptgkaf65lpxupw 
+       foreign key (fundings_id) 
+       references fundings (fundings_id)
+Hibernate: 
+    
+    alter table purchases 
+       add constraint FKqsxg72ftyqncda4pco4i49gsq 
+       foreign key (fundings_id) 
+       references fundings (fundings_id)
+Hibernate: 
+    
+    alter table purchases 
+       add constraint FKm2xjfbxbaxo2b2l6j9pj8nupr 
+       foreign key (members_id) 
+       references members (members_id)
+2023-08-26 06:37:55.268  INFO 89629 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-26 06:37:55.296  INFO 89629 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-26 06:37:55.606  WARN 89629 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-26 06:37:55.811  WARN 89629 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 6b7043d8-567c-4f61-81b8-44ab034af4ec
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-08-26 06:37:55.893  INFO 89629 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4dc7cd1c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@50ab56e2, org.springframework.security.web.context.SecurityContextPersistenceFilter@62f11ebb, org.springframework.security.web.header.HeaderWriterFilter@20580d4e, org.springframework.security.web.csrf.CsrfFilter@1b01a0d, org.springframework.security.web.authentication.logout.LogoutFilter@71a3e05c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@41ccb3b9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5c887052, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7b5b5bfe, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7b2ccba5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@580fd26b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78fe204a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@74834afd, org.springframework.security.web.session.SessionManagementFilter@2d0b05, org.springframework.security.web.access.ExceptionTranslationFilter@2d119405, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1280682]
+2023-08-26 06:37:55.917  WARN 89629 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2023-08-26 06:37:55.919  INFO 89629 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-26 06:37:55.920  INFO 89629 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-26 06:37:56.245  INFO 89629 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-26 06:37:56.248  INFO 89629 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-08-26 06:37:56.261  INFO 89629 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-08-26 06:37:56.275 ERROR 89629 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.15)
+
+2023-08-26 06:38:19.457  INFO 89921 --- [           main] com.cotato.gukbo0th.Gukbo0thApplication  : Starting Gukbo0thApplication using Java 11.0.20.1 on suhseungjuui-MacBookPro.local with PID 89921 (/Users/zzoo0123/Documents/project/gukbo0th/Gukbo0th_BE/gukbo0th/build/libs/gukbo0th-0.0.1-SNAPSHOT.jar started by zzoo0123 in /Users/zzoo0123/Documents/project/gukbo0th/Gukbo0th_BE/gukbo0th/build/libs)
+2023-08-26 06:38:19.459  INFO 89921 --- [           main] com.cotato.gukbo0th.Gukbo0thApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-08-26 06:38:19.879  INFO 89921 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-26 06:38:19.919  INFO 89921 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 4 JPA repository interfaces.
+2023-08-26 06:38:20.316  INFO 89921 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-08-26 06:38:20.324  INFO 89921 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-26 06:38:20.324  INFO 89921 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.79]
+2023-08-26 06:38:20.373  INFO 89921 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-26 06:38:20.374  INFO 89921 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 885 ms
+2023-08-26 06:38:20.478  INFO 89921 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-26 06:38:20.509  INFO 89921 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-08-26 06:38:20.618  INFO 89921 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-08-26 06:38:20.674  INFO 89921 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-26 06:38:21.731  INFO 89921 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-26 06:38:21.764  INFO 89921 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-08-26 06:38:22.000  INFO 89921 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Persons (class must be instantiated by Interceptor)
+2023-08-26 06:38:22.139  INFO 89921 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Purchases (class must be instantiated by Interceptor)
+2023-08-26 06:38:22.148  INFO 89921 --- [           main] org.hibernate.tuple.PojoInstantiator     : HHH000182: No default (no-argument) constructor for class: com.cotato.gukbo0th.domain.Fundings (class must be instantiated by Interceptor)
+Hibernate: 
+    
+    alter table persons 
+       drop 
+       foreign key FKbxel1fl3axpptgkaf65lpxupw
+Hibernate: 
+    
+    alter table purchases 
+       drop 
+       foreign key FKqsxg72ftyqncda4pco4i49gsq
+Hibernate: 
+    
+    alter table purchases 
+       drop 
+       foreign key FKm2xjfbxbaxo2b2l6j9pj8nupr
+Hibernate: 
+    
+    drop table if exists fundings
+Hibernate: 
+    
+    drop table if exists members
+Hibernate: 
+    
+    drop table if exists persons
+Hibernate: 
+    
+    drop table if exists purchases
+Hibernate: 
+    
+    create table fundings (
+       fundings_id bigint not null auto_increment,
+        created_at datetime(6) not null,
+        details varchar(255) not null,
+        funds_amount bigint not null,
+        goal_amount bigint not null,
+        main_img_url varchar(255),
+        prod_amount bigint not null,
+        prod_img_url varchar(255),
+        remain bigint not null,
+        state integer not null,
+        title varchar(255) not null,
+        primary key (fundings_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table members (
+       members_id bigint not null auto_increment,
+        email varchar(255) not null,
+        name varchar(255) not null,
+        password varchar(255) not null,
+        primary key (members_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table persons (
+       persons_id bigint not null auto_increment,
+        achieve varchar(255) not null,
+        name varchar(255) not null,
+        fundings_id bigint,
+        primary key (persons_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    create table purchases (
+       purchases_id bigint not null auto_increment,
+        amount bigint not null,
+        person varchar(255) not null,
+        purchases_at datetime(6) not null,
+        quantity bigint not null,
+        fundings_id bigint,
+        members_id bigint,
+        primary key (purchases_id)
+    ) engine=InnoDB
+Hibernate: 
+    
+    alter table persons 
+       add constraint FKbxel1fl3axpptgkaf65lpxupw 
+       foreign key (fundings_id) 
+       references fundings (fundings_id)
+Hibernate: 
+    
+    alter table purchases 
+       add constraint FKqsxg72ftyqncda4pco4i49gsq 
+       foreign key (fundings_id) 
+       references fundings (fundings_id)
+Hibernate: 
+    
+    alter table purchases 
+       add constraint FKm2xjfbxbaxo2b2l6j9pj8nupr 
+       foreign key (members_id) 
+       references members (members_id)
+2023-08-26 06:38:23.677  INFO 89921 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-26 06:38:23.686  INFO 89921 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-26 06:38:23.985  WARN 89921 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-26 06:38:24.190  WARN 89921 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4163a682-e890-4a9f-834c-c0febb6a0ece
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2023-08-26 06:38:24.272  INFO 89921 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1280682, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41ccb3b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ed9f7b1, org.springframework.security.web.header.HeaderWriterFilter@65bb6275, org.springframework.security.web.csrf.CsrfFilter@32118208, org.springframework.security.web.authentication.logout.LogoutFilter@5c887052, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@69aa7d76, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4b432e53, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@53d9826f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3e8799f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57e388c3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@20580d4e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e84f3c8, org.springframework.security.web.session.SessionManagementFilter@72a2312e, org.springframework.security.web.access.ExceptionTranslationFilter@2ed71727, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b27b210]
+2023-08-26 06:38:24.296  WARN 89921 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2023-08-26 06:38:24.297  INFO 89921 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-26 06:38:24.299  INFO 89921 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-08-26 06:38:24.585  INFO 89921 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-08-26 06:38:24.587  INFO 89921 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-08-26 06:38:24.595  INFO 89921 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-08-26 06:38:24.608 ERROR 89921 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
